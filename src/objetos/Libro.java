@@ -23,6 +23,10 @@ public class Libro {
 		this.precio = precio;
 	}
 
+	public Libro() {
+		super();
+	}
+
 	@Override
 	public String toString() {
 		return getNombre_Libro();

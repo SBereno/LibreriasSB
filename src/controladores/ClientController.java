@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,7 +25,7 @@ import objetos.Libro;
 public class ClientController implements Initializable {
 	
 	ObservableList<Libro> lista = FXCollections.observableArrayList();
-	
+		
 	@FXML
 	private ListView<Libro> ListView_Stock;
 	
@@ -46,10 +48,10 @@ public class ClientController implements Initializable {
 	private TableColumn<Libro, String> ColTapaDura;
 	
 	@FXML 
-	private TableColumn<Editorial, String> ColNombreEditorial;
+	private TableColumn<Libro, String> ColNombreEditorial;
 	
 	@FXML 
-	private TableColumn<Autor, String> ColNombreAutor;
+	private TableColumn<Libro, String> ColNombreAutor;
 	
 	@FXML 
 	private TableColumn<Libro, String> ColPrecio;
@@ -62,6 +64,7 @@ public class ClientController implements Initializable {
 	
 	public void cargarDatos() {
 		lista.clear();
+
 		Autor bSanderson = new Autor(1, 34, "Brandon Sanderson", "Estados Unidos", 1975);
 		Autor sKing = new Autor(2, 69, "Stephen king", "Estados Unidos", 1947);
 		Autor pRothfuss = new Autor(3, 8, "Patrick Rothfuss", "Estados Unidos", 1973);
@@ -94,14 +97,23 @@ public class ClientController implements Initializable {
 		lista.addAll(mist1, mist2, mist3, it, resplandor, cdadr1, cdadr2, palacio, witcher1, witcher2);
 		ListView_Stock.getItems().addAll(lista);
 		
-		ColISBN.setCellValueFactory(new PropertyValueFactory<Libro, String>("ISBN"));
-		ColPaginas.setCellValueFactory(new PropertyValueFactory<Libro, String>("paginas"));
-		ColTapaDura.setCellValueFactory(new PropertyValueFactory<Libro, String>("tapa_Dura"));
-		//ColNombreEditorial.setCellValueFactory(new PropertyValueFactory<Libro, Editorial>("nombre_Editorial"));
-		//ColNombreAutor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre_Autor()));
-		ColPrecio.setCellValueFactory(new PropertyValueFactory<Libro, String>("precio"));
-
-		TableView_Informacion.setItems(lista);
+		ListView_Stock.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Libro>() {
+		  
+			@Override
+			public void changed(ObservableValue<? extends Libro> arg0, Libro arg1, Libro arg2) {
+				lista.clear();
+				lista.add(new Libro());
+				
+				ColISBN.setCellValueFactory(c-> new SimpleStringProperty(ListView_Stock.getSelectionModel().getSelectedItem().getISBN()));
+				ColPaginas.setCellValueFactory(c-> new SimpleStringProperty(Integer.toString(ListView_Stock.getSelectionModel().getSelectedItem().getPaginas())));
+				ColTapaDura.setCellValueFactory(c-> new SimpleStringProperty(Boolean.toString(ListView_Stock.getSelectionModel().getSelectedItem().isTapa_Dura())));
+				ColNombreEditorial.setCellValueFactory(c-> new SimpleStringProperty(ListView_Stock.getSelectionModel().getSelectedItem().getEditorial().getNombre_Editorial()));
+				ColNombreAutor.setCellValueFactory(c-> new SimpleStringProperty(ListView_Stock.getSelectionModel().getSelectedItem().getAutor().getNombre_Autor()));
+				ColPrecio.setCellValueFactory(c-> new SimpleStringProperty(Float.toString(ListView_Stock.getSelectionModel().getSelectedItem().getPrecio())));
+				
+				TableView_Informacion.setItems(lista);
+			}
+		});
 	}
 	
 	public void comprobarStock() {

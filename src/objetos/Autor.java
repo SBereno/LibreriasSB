@@ -5,13 +5,13 @@ public class Autor {
 	private int id_Autor, libros_Publicados, nacimiento;
 	private String nombre_Autor, pais;
 
-	public Autor(int id_Autor, int libros_Publicados, String nombre_Autor, String pais, int fecha_Nacimiento) {
+	public Autor(int id_Autor, int libros_Publicados, String nombre_Autor, String pais, int nacimiento) {
 		super();
 		this.id_Autor = id_Autor;
 		this.libros_Publicados = libros_Publicados;
 		this.nombre_Autor = nombre_Autor;
 		this.pais = pais;
-		this.nacimiento = fecha_Nacimiento;
+		this.nacimiento = nacimiento;
 	}
 
 	public int getId_Autor() {
