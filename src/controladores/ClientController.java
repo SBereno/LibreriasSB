@@ -102,6 +102,7 @@ public class ClientController implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends Libro> arg0, Libro arg1, Libro arg2) {
 				lista.clear();
+				TextField_Stock.setText("");
 				lista.add(new Libro());
 				
 				ColISBN.setCellValueFactory(c-> new SimpleStringProperty(ListView_Stock.getSelectionModel().getSelectedItem().getISBN()));
