@@ -17,7 +17,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import objetos.Autor;
 import objetos.Editorial;
 import objetos.Libro;
@@ -25,7 +24,7 @@ import objetos.Libro;
 public class ClientController implements Initializable {
 	
 	ObservableList<Libro> lista = FXCollections.observableArrayList();
-		
+	
 	@FXML
 	private ListView<Libro> ListView_Stock;
 	
@@ -33,28 +32,13 @@ public class ClientController implements Initializable {
 	private TextField TextField_Stock;
 	
 	@FXML
-	private Button Button_ComprobarStock;
+	private Button Button_ComprobarStock, Button_Comprar;
 
 	@FXML
 	private TableView<Libro> TableView_Informacion;
 	
 	@FXML 
-	private TableColumn<Libro, String> ColISBN;
-	
-	@FXML 
-	private TableColumn<Libro, String> ColPaginas;
-	
-	@FXML 
-	private TableColumn<Libro, String> ColTapaDura;
-	
-	@FXML 
-	private TableColumn<Libro, String> ColNombreEditorial;
-	
-	@FXML 
-	private TableColumn<Libro, String> ColNombreAutor;
-	
-	@FXML 
-	private TableColumn<Libro, String> ColPrecio;
+	private TableColumn<Libro, String> ColISBN, ColPaginas, ColTapaDura, ColNombreEditorial, ColNombreAutor, ColPrecio;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
