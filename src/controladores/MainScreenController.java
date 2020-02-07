@@ -3,11 +3,11 @@ package controladores;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,9 +27,8 @@ public class MainScreenController implements Initializable {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../vistas/ClientView.fxml"));
 			Scene scene = new Scene(root, 1280, 720);
-			Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			Main.primaryStage.setScene(scene);
+			Main.primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,10 +37,10 @@ public class MainScreenController implements Initializable {
 	public void entrarComoEmpleado(Event event) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../vistas/EmployeeLogin.fxml"));
-			Scene scene = new Scene(root, 1280, 720);
-			Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

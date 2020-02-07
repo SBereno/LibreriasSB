@@ -42,12 +42,17 @@
             <Font size="22.0" />
          </font>
       </TextField>
-      <Button fx:id="Button_Comprar" layoutX="699.0" layoutY="335.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="256.0" text="COMPRAR">
+      <Button fx:id="Button_Comprar" layoutX="699.0" layoutY="335.0" mnemonicParsing="false" onAction="#comprarLibro" prefHeight="51.0" prefWidth="256.0" text="COMPRAR">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
       <Button fx:id="Button_Comprar" layoutX="699.0" layoutY="463.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="256.0" text="RESERVAR">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Salir" layoutX="1165.0" layoutY="668.0" mnemonicParsing="false" onAction="#salir" prefHeight="43.0" prefWidth="116.0" text="SALIR">
          <font>
             <Font size="24.0" />
          </font>

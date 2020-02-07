@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controladores.BuyController">
+   <children>
+      <Label focusTraversable="false" layoutX="117.0" layoutY="30.0" text="COMPRANDO LIBRO">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TextField_NombreLibro" editable="false" focusTraversable="false" layoutX="126.0" layoutY="78.0" prefHeight="25.0" prefWidth="222.0" />
+      <Label focusTraversable="false" layoutX="33.0" layoutY="80.0" text="Libro:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label focusTraversable="false" layoutX="33.0" layoutY="140.0" text="Cantidad:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="ComboBox_Cantidad" focusTraversable="false" layoutX="125.0" layoutY="138.0" onAction="#calcularPrecio" prefWidth="150.0" />
+      <Label focusTraversable="false" layoutX="30.0" layoutY="198.0" text="Precio Total:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TextField_PrecioTotal" editable="false" focusTraversable="false" layoutX="126.0" layoutY="196.0" />
+      <Label focusTraversable="false" layoutX="131.0" layoutY="250.0" text="Metodo de pago:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="RadioButton_TDC" focusTraversable="false" layoutX="30.0" layoutY="309.0" mnemonicParsing="false" text="Tarjeta de credito">
+         <toggleGroup>
+            <ToggleGroup fx:id="Pago" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="RadioButton_CR" focusTraversable="false" layoutX="30.0" layoutY="348.0" mnemonicParsing="false" text="Contrareembolso" toggleGroup="$Pago" />
+      <RadioButton fx:id="RadioButton_PP" focusTraversable="false" layoutX="32.0" layoutY="388.0" mnemonicParsing="false" text="Paypal" toggleGroup="$Pago" AnchorPane.leftAnchor="30.0" />
+   </children>
+</AnchorPane>

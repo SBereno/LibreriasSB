@@ -3,19 +3,18 @@ package controladores;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import objetos.Empleado;
 
@@ -25,7 +24,7 @@ public class EmployeeLoginController implements Initializable {
 	private ListView<Empleado> ListView_Empleados;
 
 	@FXML
-	private TextField TextField_Password;
+	private PasswordField PasswordField_Password;
 
 	@FXML
 	private Button Button_Entrar;
@@ -39,10 +38,15 @@ public class EmployeeLoginController implements Initializable {
 		ListView_Empleados.getItems().addAll(Datos.listaEmpleados);
 	}
 
-	public void entrar() {
+	public void entrar(Event event) {
 		try {
-			if (ListView_Empleados.getSelectionModel().getSelectedItem().getPassword().equals(TextField_Password.getText())) {
-				System.out.println("dpm socio");
+			if (ListView_Empleados.getSelectionModel().getSelectedItem().getPassword().equals(PasswordField_Password.getText())) {
+				Stage stage = (Stage) Button_Entrar.getScene().getWindow();
+				stage.close();
+				Parent root = FXMLLoader.load(getClass().getResource("../vistas/EmployeeView.fxml"));
+				Scene scene = new Scene(root, 1280, 720);
+				Main.primaryStage.setScene(scene);
+				Main.primaryStage.show();
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Login incorrecto");
