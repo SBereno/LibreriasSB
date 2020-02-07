@@ -34,5 +34,17 @@ public class MainScreenController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void entrarComoEmpleado(Event event) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("../vistas/EmployeeLogin.fxml"));
+			Scene scene = new Scene(root, 1280, 720);
+			Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

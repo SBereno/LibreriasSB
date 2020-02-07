@@ -14,7 +14,7 @@
 				<Image url="@logo.png" />
 			</image>
 		</ImageView>
-      <Button fx:id="Button_EntrarComoEmpleado" layoutX="312.0" layoutY="498.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="328.0" text="ENTRAR COMO EMPLEADO">
+      <Button fx:id="Button_EntrarComoEmpleado" layoutX="312.0" layoutY="498.0" mnemonicParsing="false" onAction="#entrarComoEmpleado" prefHeight="51.0" prefWidth="328.0" text="ENTRAR COMO EMPLEADO">
          <font>
             <Font size="24.0" />
          </font>

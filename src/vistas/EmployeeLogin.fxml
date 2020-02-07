@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="550.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.EmployeeLoginController">
+   <children>
+      <ListView fx:id="ListView_Empleados" layoutX="60.0" layoutY="51.0" prefHeight="332.0" prefWidth="280.0" />
+      <TextField fx:id="TextField_Password" layoutX="60.0" layoutY="421.0" prefHeight="31.0" prefWidth="280.0" promptText="Contraseña" />
+      <Button fx:id="Button_Entrar" layoutX="60.0" layoutY="472.0" mnemonicParsing="false" onAction="#entrar" prefHeight="31.0" prefWidth="280.0" text="ENTRAR" />
+   </children>
+</AnchorPane>
