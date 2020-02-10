@@ -5,13 +5,13 @@ public class Libro {
 	private String ISBN;
 	private int cantidad, paginas;
 	private String nombre_Libro;
-	private boolean tapa_Dura;
+	private boolean tapa_Dura, reservado;
 	private Editorial editorial;
 	private Autor autor;
 	private float precio;
 
 	public Libro(String iSBN, int cantidad, int paginas, String nombre_Libro, boolean tapa_Dura, Editorial editorial,
-			Autor autor, float precio) {
+			Autor autor, float precio, boolean reservado) {
 		super();
 		this.ISBN = iSBN;
 		this.cantidad = cantidad;
@@ -21,6 +21,7 @@ public class Libro {
 		this.editorial = editorial;
 		this.autor = autor;
 		this.precio = precio;
+		this.reservado = reservado;
 	}
 
 	public Libro() {
@@ -94,6 +95,14 @@ public class Libro {
 
 	public void setPrecio(float precio) {
 		this.precio = precio;
+	}
+
+	public boolean isReservado() {
+		return reservado;
+	}
+
+	public void setReservado(boolean reservado) {
+		this.reservado = reservado;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.animation.FadeTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import objetos.Libro;
 
 public class ClientController implements Initializable {
@@ -38,7 +40,7 @@ public class ClientController implements Initializable {
 	private TextField TextField_Stock;
 	
 	@FXML
-	private Button Button_ComprobarStock, Button_Comprar, Button_Salir;
+	private Button Button_ComprobarStock, Button_Comprar, Button_Reservar, Button_Salir;
 
 	@FXML
 	private TableView<Libro> TableView_Informacion;
@@ -46,10 +48,24 @@ public class ClientController implements Initializable {
 	@FXML 
 	private TableColumn<Libro, String> ColISBN, ColPaginas, ColTapaDura, ColNombreEditorial, ColNombreAutor, ColPrecio;
 	
+	@FXML
+	private Label Label_Reservado;
+	
+	private FadeTransition fadeIn = new FadeTransition(
+		    Duration.millis(1000)
+		);
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		TableView_Informacion.setPlaceholder(new Label(""));
 		cargarDatos();
+		fadeIn.setNode(Label_Reservado);
+
+	    fadeIn.setFromValue(0.0);
+	    fadeIn.setToValue(1.0);
+	    fadeIn.setCycleCount(1);
+	    fadeIn.setAutoReverse(false);
+	    
 	}
 	
 	public void cargarDatos() {
@@ -124,6 +140,17 @@ public class ClientController implements Initializable {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void reservarLibro() {
+		libroEscogido = ListView_Stock.getSelectionModel().getSelectedItem().getNombre_Libro();
+		Label_Reservado.setVisible(false);
+		Label_Reservado.setText("Ejemplar de " + libroEscogido + " reservado.");
+		
+		if (!Label_Reservado.isVisible()) {
+			Label_Reservado.setVisible(true);
+	        fadeIn.playFromStart();
+	    }
 	}
 	
 }
