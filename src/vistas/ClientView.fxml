@@ -6,14 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="719.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ClientController">
+<AnchorPane id="anchor" prefHeight="719.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ClientController">
    <children>
       <ListView fx:id="ListView_Stock" layoutX="99.0" layoutY="118.0" prefHeight="484.0" prefWidth="295.0" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="887.0" />
-      <Label fx:id="Label_Stock" layoutX="146.0" layoutY="53.0" text="NUESTROS LIBROS" AnchorPane.leftAnchor="146.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
       <Label layoutX="746.0" layoutY="53.0" text="INFORMACION">
          <font>
             <Font size="24.0" />

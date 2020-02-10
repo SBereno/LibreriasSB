@@ -19,6 +19,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Datos.cargarDatos();
+			Main.primaryStage.setResizable(false);
 			Parent root = FXMLLoader.load(getClass().getResource("../vistas/MainScreen.fxml"));
 			Scene scene = new Scene(root, 1280, 720);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

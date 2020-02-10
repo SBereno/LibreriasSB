@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 import objetos.Empleado;
 
 public class EmployeeLoginController implements Initializable {
+	
+	public static String empleadoSeleccionado;
 
 	@FXML
 	private ListView<Empleado> ListView_Empleados;
@@ -41,10 +43,12 @@ public class EmployeeLoginController implements Initializable {
 	public void entrar(Event event) {
 		try {
 			if (ListView_Empleados.getSelectionModel().getSelectedItem().getPassword().equals(PasswordField_Password.getText())) {
+				empleadoSeleccionado = ListView_Empleados.getSelectionModel().getSelectedItem().getNombre();
 				Stage stage = (Stage) Button_Entrar.getScene().getWindow();
 				stage.close();
 				Parent root = FXMLLoader.load(getClass().getResource("../vistas/EmployeeView.fxml"));
 				Scene scene = new Scene(root, 1280, 720);
+				scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 				Main.primaryStage.setScene(scene);
 				Main.primaryStage.show();
 			} else {

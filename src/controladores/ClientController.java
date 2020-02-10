@@ -28,32 +28,30 @@ import javafx.util.Duration;
 import objetos.Libro;
 
 public class ClientController implements Initializable {
-	
+
 	ObservableList<Libro> listaAux = FXCollections.observableArrayList();
 	public static String libroEscogido;
 	public static float precio;
 
 	@FXML
 	private ListView<Libro> ListView_Stock;
-	
+
 	@FXML
 	private TextField TextField_Stock;
-	
+
 	@FXML
 	private Button Button_ComprobarStock, Button_Comprar, Button_Reservar, Button_Salir;
 
 	@FXML
 	private TableView<Libro> TableView_Informacion;
-	
-	@FXML 
+
+	@FXML
 	private TableColumn<Libro, String> ColISBN, ColPaginas, ColTapaDura, ColNombreEditorial, ColNombreAutor, ColPrecio;
-	
+
 	@FXML
 	private Label Label_Reservado;
-	
-	private FadeTransition fadeIn = new FadeTransition(
-		    Duration.millis(1000)
-		);
+
+	private FadeTransition fadeIn = new FadeTransition(Duration.millis(1500));
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -61,36 +59,42 @@ public class ClientController implements Initializable {
 		cargarDatos();
 		fadeIn.setNode(Label_Reservado);
 
-	    fadeIn.setFromValue(0.0);
-	    fadeIn.setToValue(1.0);
-	    fadeIn.setCycleCount(1);
-	    fadeIn.setAutoReverse(false);
-	    
+		fadeIn.setFromValue(0.0);
+		fadeIn.setToValue(1.0);
+		fadeIn.setCycleCount(2);
+		fadeIn.setAutoReverse(true);
+
 	}
-	
+
 	public void cargarDatos() {
 		ListView_Stock.getItems().addAll(Datos.listaLibros);
-		
+
 		ListView_Stock.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Libro>() {
-		  
+
 			@Override
 			public void changed(ObservableValue<? extends Libro> arg0, Libro arg1, Libro arg2) {
 				listaAux.clear();
 				TextField_Stock.setText("");
 				listaAux.add(new Libro());
-				
-				ColISBN.setCellValueFactory(c-> new SimpleStringProperty(ListView_Stock.getSelectionModel().getSelectedItem().getISBN()));
-				ColPaginas.setCellValueFactory(c-> new SimpleStringProperty(Integer.toString(ListView_Stock.getSelectionModel().getSelectedItem().getPaginas())));
-				ColTapaDura.setCellValueFactory(c-> new SimpleStringProperty(Boolean.toString(ListView_Stock.getSelectionModel().getSelectedItem().isTapa_Dura())));
-				ColNombreEditorial.setCellValueFactory(c-> new SimpleStringProperty(ListView_Stock.getSelectionModel().getSelectedItem().getEditorial().getNombre_Editorial()));
-				ColNombreAutor.setCellValueFactory(c-> new SimpleStringProperty(ListView_Stock.getSelectionModel().getSelectedItem().getAutor().getNombre_Autor()));
-				ColPrecio.setCellValueFactory(c-> new SimpleStringProperty(Float.toString(ListView_Stock.getSelectionModel().getSelectedItem().getPrecio())));
-				
+
+				ColISBN.setCellValueFactory(
+						c -> new SimpleStringProperty(ListView_Stock.getSelectionModel().getSelectedItem().getISBN()));
+				ColPaginas.setCellValueFactory(c -> new SimpleStringProperty(
+						Integer.toString(ListView_Stock.getSelectionModel().getSelectedItem().getPaginas())));
+				ColTapaDura.setCellValueFactory(c -> new SimpleStringProperty(
+						Boolean.toString(ListView_Stock.getSelectionModel().getSelectedItem().isTapa_Dura())));
+				ColNombreEditorial.setCellValueFactory(c -> new SimpleStringProperty(
+						ListView_Stock.getSelectionModel().getSelectedItem().getEditorial().getNombre_Editorial()));
+				ColNombreAutor.setCellValueFactory(c -> new SimpleStringProperty(
+						ListView_Stock.getSelectionModel().getSelectedItem().getAutor().getNombre_Autor()));
+				ColPrecio.setCellValueFactory(c -> new SimpleStringProperty(
+						Float.toString(ListView_Stock.getSelectionModel().getSelectedItem().getPrecio())));
+
 				TableView_Informacion.setItems(listaAux);
 			}
 		});
 	}
-	
+
 	public void comprobarStock() {
 		try {
 			if (ListView_Stock.getSelectionModel().getSelectedItem().getCantidad() == 0) {
@@ -102,18 +106,19 @@ public class ClientController implements Initializable {
 			TextField_Stock.setText("Selecciona un libro");
 		}
 	}
-	
+
 	public void salir() {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../vistas/MainScreen.fxml"));
 			Scene scene = new Scene(root, 1280, 720);
+			scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 			Main.primaryStage.setScene(scene);
 			Main.primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void comprarLibro() {
 		if (ListView_Stock.getSelectionModel().getSelectedItem() == null) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -134,6 +139,8 @@ public class ClientController implements Initializable {
 				Parent root = FXMLLoader.load(getClass().getResource("../vistas/BuyView.fxml"));
 				Scene scene = new Scene(root);
 				Stage stage = new Stage();
+				stage.setResizable(false);
+				scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 				stage.setScene(scene);
 				stage.show();
 			} catch (Exception e) {
@@ -141,16 +148,33 @@ public class ClientController implements Initializable {
 			}
 		}
 	}
-	
+
 	public void reservarLibro() {
-		libroEscogido = ListView_Stock.getSelectionModel().getSelectedItem().getNombre_Libro();
-		Label_Reservado.setVisible(false);
-		Label_Reservado.setText("Ejemplar de " + libroEscogido + " reservado.");
-		
-		if (!Label_Reservado.isVisible()) {
-			Label_Reservado.setVisible(true);
-	        fadeIn.playFromStart();
-	    }
+		try {
+			if (ListView_Stock.getSelectionModel().getSelectedItem().isReservado()) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("AVISO");
+				alert.setHeaderText(null);
+				alert.setContentText("Ya has reservado este libro.");
+				alert.showAndWait();
+			} else {
+				ListView_Stock.getSelectionModel().getSelectedItem().setReservado(true);
+				libroEscogido = ListView_Stock.getSelectionModel().getSelectedItem().getNombre_Libro();
+				Label_Reservado.setVisible(false);
+				Label_Reservado.setText("Ejemplar de " + libroEscogido + " reservado.");
+
+				if (!Label_Reservado.isVisible()) {
+					Label_Reservado.setVisible(true);
+					fadeIn.playFromStart();
+				}
+			}
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Selecciona un libro primero.");
+			alert.showAndWait();
+		}
 	}
-	
+
 }

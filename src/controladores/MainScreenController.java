@@ -27,6 +27,7 @@ public class MainScreenController implements Initializable {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../vistas/ClientView.fxml"));
 			Scene scene = new Scene(root, 1280, 720);
+			scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 			Main.primaryStage.setScene(scene);
 			Main.primaryStage.show();
 		} catch (Exception e) {
@@ -39,6 +40,8 @@ public class MainScreenController implements Initializable {
 			Parent root = FXMLLoader.load(getClass().getResource("../vistas/EmployeeLogin.fxml"));
 			Scene scene = new Scene(root);
 			Stage stage = new Stage();
+			stage.setResizable(false);
+			scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();
 		} catch (Exception e) {
