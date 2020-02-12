@@ -1,6 +1,7 @@
 package controladores;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -13,15 +14,27 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import objetos.Libro;
 
 public class EmployeeController implements Initializable {
 
+	ArrayList<Pane> paneList = new ArrayList<>();
+	String paneEscogido;
+	
+	@FXML
+	private Pane Pane_Stock;
+	
+	@FXML 
+	private TableView<Libro> TableView_Stock;
+	
 	@FXML
 	private MenuBar MenuBar_Employee;
 
 	@FXML
-	private MenuItem MenuItem_CambiarUsuario, MenuItem_Salir;
+	private MenuItem MenuItem_CambiarUsuario, MenuItem_Salir, MenuItem_Stock, MenuItem_Editoriales;
 	
 	@FXML
 	private Label Label_Empleado;
@@ -29,6 +42,7 @@ public class EmployeeController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Label_Empleado.setText("Empleado: " + EmployeeLoginController.empleadoSeleccionado);
+		paneList.add(Pane_Stock);
 	}
 
 	public void cambiarUsuario(Event event) {
@@ -54,6 +68,33 @@ public class EmployeeController implements Initializable {
 			Main.primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void definePane(Event event) {
+	    MenuItem source = (MenuItem) event.getSource();
+	    switch (source.getId()) {
+		case "MenuItem_Stock":
+			paneEscogido = "Pane_Stock";
+			showPane();
+			break;
+		case "MenuItem_Editoriales":
+			paneEscogido = "asd";
+			showPane();
+			break;
+		default:
+			break;
+		}
+		
+	}
+	
+	public void showPane() {
+		for (Pane pane : paneList) {
+			if (pane.getId().equals(paneEscogido)) {
+				pane.setVisible(true);
+			} else {
+				pane.setVisible(false);
+			}
 		}
 	}
 }
