@@ -1,5 +1,6 @@
 package controladores;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -12,11 +13,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -45,7 +48,8 @@ public class EmployeeController implements Initializable {
 	private MenuBar MenuBar_Employee;
 
 	@FXML
-	private MenuItem MenuItem_CambiarUsuario, MenuItem_Salir, MenuItem_Stock, MenuItem_Editoriales, MenuItem_Autores;
+	private MenuItem MenuItem_CambiarUsuario, MenuItem_Salir, MenuItem_Stock, MenuItem_Editoriales, MenuItem_Autores,
+			MenuItem_NuevoLibro, MenuItem_BorrarLibro;
 
 	@FXML
 	private TableColumn<Libro, String> ColNombre, ColISBN, ColCantidad, ColPaginas, ColTapaDura, ColNombreEditorial,
@@ -94,7 +98,8 @@ public class EmployeeController implements Initializable {
 
 			ColIDEditorial.setCellValueFactory(new PropertyValueFactory<Editorial, String>("id_Editorial"));
 			ColNombreEditorial2.setCellValueFactory(new PropertyValueFactory<Editorial, String>("nombre_Editorial"));
-			ColAutores.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLista_de_autores()));
+			ColAutores.setCellValueFactory(
+					cellData -> new SimpleStringProperty(cellData.getValue().getLista_de_autores()));
 			TableView_Editoriales.getItems().addAll(Datos.listaEditoriales);
 
 			TableView_Autores.getItems().clear();
@@ -164,5 +169,27 @@ public class EmployeeController implements Initializable {
 				pane.setVisible(false);
 			}
 		}
+	}
+
+	public void borrarLibro() {
+		if (TableView_Stock.getSelectionModel().getSelectedItem() == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Selecciona un libro para eliminar.");
+			alert.showAndWait();
+		} else {
+			TableView_Stock.getItems().remove(TableView_Stock.getSelectionModel().getSelectedItem());
+		}
+	}
+	
+	public void nuevoLibro() throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("../vistas/NewBookView.fxml"));
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setResizable(false);
+		scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		stage.setScene(scene);
+		stage.show();
 	}
 }

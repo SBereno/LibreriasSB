@@ -47,7 +47,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Salir" layoutX="1165.0" layoutY="668.0" mnemonicParsing="false" onAction="#salir" prefHeight="43.0" prefWidth="116.0" text="SALIR">
+      <Button id="salir" fx:id="Button_Salir" focusTraversable="false" layoutX="1170.0" layoutY="668.0" mnemonicParsing="false" onAction="#salir" prefHeight="43.0" prefWidth="116.0" text="SALIR">
          <font>
             <Font size="24.0" />
          </font>

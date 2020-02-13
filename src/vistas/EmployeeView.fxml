@@ -19,12 +19,12 @@
           <Menu mnemonicParsing="false" text="Usuario">
                <items>
                   <MenuItem fx:id="MenuItem_CambiarUsuario" mnemonicParsing="false" onAction="#cambiarUsuario" text="Cambiar usuario" />
-                  <MenuItem fx:id="MenuItem_Salir" mnemonicParsing="false" onAction="#salir" text="Salir" />
+                  <MenuItem id= "salir" fx:id="MenuItem_Salir" mnemonicParsing="false" onAction="#salir" text="Salir" />
                </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Label fx:id="Label_Empleado" layoutX="1129.0" layoutY="686.0" text="Empleado:" AnchorPane.rightAnchor="20.0">
+      <Label id="empleado" fx:id="Label_Empleado" layoutX="1129.0" layoutY="686.0" text="Empleado:" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -45,8 +45,8 @@
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Nuevo Libro" />
-                        <MenuItem mnemonicParsing="false" text="Borrar Seleccionado" />
+                      <MenuItem fx:id="MenuItem_NuevoLibro" mnemonicParsing="false" onAction="#nuevoLibro" text="Nuevo Libro" />
+                        <MenuItem fx:id="MenuItem_BorrarLibro" mnemonicParsing="false" onAction="#borrarLibro" text="Borrar Seleccionado" />
                     </items>
                   </ContextMenu>
                </contextMenu>
