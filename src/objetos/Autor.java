@@ -46,11 +46,11 @@ public class Autor {
 		this.pais = pais;
 	}
 
-	public int getFecha_Nacimiento() {
+	public int getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setFecha_Nacimiento(int fecha_Nacimiento) {
+	public void setNacimiento(int fecha_Nacimiento) {
 		this.nacimiento = fecha_Nacimiento;
 	}
 

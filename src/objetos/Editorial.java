@@ -31,8 +31,13 @@ public class Editorial {
 		this.nombre_Editorial = nombre_Editorial;
 	}
 
-	public ArrayList<Autor> getLista_de_autores() {
-		return lista_de_autores;
+	public String getLista_de_autores() {
+		String aux = "";
+		for (Autor autor : lista_de_autores) {
+			aux = aux + autor.getNombre_Autor() + ", ";
+		}
+		aux = aux.substring(0, aux.length() - 2);
+		return aux;
 	}
 
 	public void setLista_de_autores(ArrayList<Autor> lista_de_autores) {

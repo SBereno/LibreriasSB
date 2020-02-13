@@ -13,15 +13,21 @@ public class Datos {
 
 	public static ObservableList<Libro> listaLibros = FXCollections.observableArrayList();
 	public static ObservableList<Empleado> listaEmpleados = FXCollections.observableArrayList();
+	public static ObservableList<Editorial> listaEditoriales = FXCollections.observableArrayList();
+	public static ObservableList<Autor> listaAutores = FXCollections.observableArrayList();
 
 	public static void cargarDatos() {
 		listaLibros.clear();
-
+		listaEditoriales.clear();
+		listaAutores.clear();
+		
 		Autor bSanderson = new Autor(1, 34, "Brandon Sanderson", "Estados Unidos", 1975);
 		Autor sKing = new Autor(2, 69, "Stephen king", "Estados Unidos", 1947);
 		Autor pRothfuss = new Autor(3, 8, "Patrick Rothfuss", "Estados Unidos", 1973);
 		Autor rZafon = new Autor(4, 9, "Carlos Ruiz Zafon", "España", 1964);
 		Autor aSapkowski = new Autor(5, 13, "Andrzej Sapkowski", "Polonia", 1948);
+		
+		listaAutores.addAll(bSanderson, sKing, pRothfuss, rZafon, aSapkowski);
 		
 		ArrayList<Autor> listaDeBolsillo = new ArrayList<Autor>();
 		listaDeBolsillo.add(bSanderson);
@@ -34,6 +40,8 @@ public class Datos {
 		
 		Editorial deBolsillo = new Editorial(1, "B de Bolsillo", listaDeBolsillo);
 		Editorial alamut = new Editorial(2, "Alamut Ediciones", listaAlamut);
+		
+		listaEditoriales.addAll(deBolsillo, alamut);
 		
 		Libro mist1 = new Libro("9788498726138", 42, 688, "El Imperio Final (Mistborn 1)", true, deBolsillo, bSanderson, 19.99f, false);
 		Libro mist2 = new Libro("849872709X", 30, 800, "El Pozo de la Ascension (Mistborn 2)", true, deBolsillo, bSanderson, 19.99f, false);

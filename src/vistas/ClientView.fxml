@@ -19,7 +19,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <TableView fx:id="TableView_Informacion" layoutX="509.0" layoutY="118.0" prefHeight="51.0" prefWidth="645.0">
+      <TableView fx:id="TableView_Informacion" layoutX="509.0" layoutY="118.0" prefHeight="59.0" prefWidth="645.0">
         <columns>
           <TableColumn fx:id="ColISBN" editable="false" prefWidth="106.0" text="ISBN" />
           <TableColumn fx:id="ColPaginas" minWidth="0.0" prefWidth="64.0" text="N. Paginas" />
