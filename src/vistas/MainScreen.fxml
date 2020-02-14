@@ -14,12 +14,12 @@
 				<Image url="@logo.png" />
 			</image>
 		</ImageView>
-      <Button fx:id="Button_EntrarComoEmpleado" layoutX="312.0" layoutY="498.0" mnemonicParsing="false" onAction="#entrarComoEmpleado" prefHeight="51.0" prefWidth="328.0" text="ENTRAR COMO EMPLEADO">
+      <Button fx:id="Button_EntrarComoEmpleado" layoutX="312.0" layoutY="498.0" mnemonicParsing="false" onAction="#entrarComoEmpleado" prefHeight="51.0" prefWidth="328.0" styleClass="button1" text="ENTRAR COMO EMPLEADO">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="Button_EntrarComoCliente" layoutX="671.0" layoutY="498.0" mnemonicParsing="false" onAction="#entrarComoCliente" text="ENTRAR COMO CLIENTE">
+      <Button fx:id="Button_EntrarComoCliente" layoutX="671.0" layoutY="498.0" mnemonicParsing="false" onAction="#entrarComoCliente" styleClass="button1" text="ENTRAR COMO CLIENTE">
          <font>
             <Font size="24.0" />
          </font>
