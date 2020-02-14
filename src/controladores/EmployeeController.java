@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.application.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -27,7 +29,7 @@ import objetos.Autor;
 import objetos.Editorial;
 import objetos.Libro;
 
-public class EmployeeController implements Initializable {
+public class EmployeeController extends Application implements Initializable {
 
 	ArrayList<Pane> paneList = new ArrayList<>();
 	String paneEscogido;
@@ -63,6 +65,9 @@ public class EmployeeController implements Initializable {
 	@FXML
 	private Label Label_Empleado;
 
+	@FXML
+	private Button Button_Libros, Button_Editoriales, Button_Autores;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		cargarDatos();
@@ -191,5 +196,26 @@ public class EmployeeController implements Initializable {
 		scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	public void abrirReportLibros() {
+		HostServices hs = getHostServices();
+		hs.showDocument(System.getProperty("user.dir") + "\\src\\Libros.pdf");
+	}
+	
+	public void abrirReportEditoriales() {
+		HostServices hs = getHostServices();
+		hs.showDocument(System.getProperty("user.dir") + "\\src\\Editoriales.pdf");
+	}
+	
+	public void abrirReportAutores() {
+		HostServices hs = getHostServices();
+		hs.showDocument(System.getProperty("user.dir") + "\\src\\Autores.pdf");
+	}
+
+	@Override
+	public void start(Stage arg0) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -19,7 +19,7 @@
           <Menu mnemonicParsing="false" text="Usuario">
                <items>
                   <MenuItem fx:id="MenuItem_CambiarUsuario" mnemonicParsing="false" onAction="#cambiarUsuario" text="Cambiar usuario" />
-                  <MenuItem id= "salir" fx:id="MenuItem_Salir" mnemonicParsing="false" onAction="#salir" text="Salir" />
+                  <MenuItem id="salir" fx:id="MenuItem_Salir" mnemonicParsing="false" onAction="#salir" text="Salir" />
                </items>
           </Menu>
         </menus>
@@ -80,5 +80,8 @@
             </TableView>
          </children>
       </Pane>
+      <Button fx:id="Button_Libros" layoutX="14.0" layoutY="675.0" mnemonicParsing="false" onAction="#abrirReportLibros" styleClass="button1" text="Informe Libros" />
+      <Button fx:id="Button_Editoriales" layoutX="150.0" layoutY="675.0" mnemonicParsing="false" onAction="#abrirReportEditoriales" styleClass="button1" text="Informe Editoriales" />
+      <Button fx:id="Button_Autores" layoutX="307.0" layoutY="675.0" mnemonicParsing="false" onAction="#abrirReportAutores" styleClass="button1" text="Informe Autores" />
    </children>
 </AnchorPane>
